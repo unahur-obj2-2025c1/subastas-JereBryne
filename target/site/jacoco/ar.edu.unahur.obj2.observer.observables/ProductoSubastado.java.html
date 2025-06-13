@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductoSubastado.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">subasta</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unahur.obj2.observer.observables</a> &gt; <span class="el_source">ProductoSubastado.java</span></div><h1>ProductoSubastado.java</h1><pre class="source lang-java linenums">package ar.edu.unahur.obj2.observer.observables;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import ar.edu.unahur.obj2.observer.Oferta;
+import ar.edu.unahur.obj2.observer.excepciones.OfertaSubastadorException;
+import ar.edu.unahur.obj2.observer.observadores.Observer;
+
+<span class="fc" id="L12">public class ProductoSubastado implements Observable{</span>
+<span class="fc" id="L13">	public List&lt;Oferta&gt; ofertasRecibidas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L14">	public Set&lt;Observer&gt; subastadores = new HashSet&lt;&gt;();</span>
+
+	@Override
+	public void agregarObservador(Observer observador) { 
+<span class="fc" id="L18">		subastadores.add(observador);</span>
+<span class="fc" id="L19">	}</span>
+
+	@Override
+	public void sacarObservador(Observer observador) {
+<span class="fc" id="L23">		subastadores.remove(observador);</span>
+<span class="fc" id="L24">	}</span>
+	
+	@Override
+	public void notificar() {
+<span class="fc" id="L28">		subastadores.forEach(o -&gt; o.actualizar(getUltimaOferta()));</span>
+<span class="fc" id="L29">	}</span>
+
+	public Oferta getUltimaOferta() {
+<span class="fc" id="L32">		return ofertasRecibidas.get(ofertasRecibidas.size()-1);</span>
+	}
+
+	public void agregarOferta(Oferta oferta) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if (!subastadores.contains(oferta.getSubastador())) {</span>
+<span class="fc" id="L37">			throw new OfertaSubastadorException(</span>
+<span class="fc" id="L38">					&quot;El subastador &quot;+ oferta.getSubastador().getUsername() + &quot; no participa en la subasta&quot;);</span>
+		}
+<span class="fc" id="L40">		ofertasRecibidas.add(oferta);</span>
+<span class="fc" id="L41">		notificar();</span>
+<span class="fc" id="L42">	}</span>
+	
+	public List&lt;Oferta&gt; getOfertas() {
+<span class="nc" id="L45">        return ofertasRecibidas;</span>
+    }
+
+    public Set&lt;Observer&gt; getSubastadores() {
+<span class="nc" id="L49">        return subastadores;</span>
+    }
+
+    public void reiniciarSubasta() {
+<span class="fc" id="L53">    	ofertasRecibidas.clear();</span>
+<span class="fc" id="L54">    	subastadores.clear();</span>
+<span class="fc" id="L55">    }</span>
+    
+    public Integer cantidadDeOfertasRecibidas() {
+<span class="fc" id="L58">    	return ofertasRecibidas.size();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+subasta,ar.edu.unahur.obj2.observer,Oferta,0,15,0,0,0,6,0,3,0,3
+subasta,ar.edu.unahur.obj2.observer.observadores,Subastador,0,43,0,0,0,12,0,6,0,6
+subasta,ar.edu.unahur.obj2.observer.observadores,EstrategiaUnico,0,25,0,2,0,6,0,3,0,2
+subasta,ar.edu.unahur.obj2.observer.observadores,EstrategiaConLimite,0,26,0,2,0,6,0,3,0,2
+subasta,ar.edu.unahur.obj2.observer.observadores,EstrategiaArriesgado,0,14,0,0,0,2,0,2,0,2
+subasta,ar.edu.unahur.obj2.observer.observables,ProductoSubastado,6,80,0,2,2,20,2,10,2,9
+subasta,ar.edu.unahur.obj2.observer.excepciones,OfertaSubastadorException,0,4,0,0,0,2,0,1,0,1
